@@ -1,0 +1,26 @@
+﻿<Window x:Class="WpfMatchClient.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="队伍选择" Height="483" Width="401">
+    <Grid>
+        <ListBox Height="398"
+                 HorizontalAlignment="Left"
+                 Name="teamlistBox"
+                 VerticalAlignment="Top"
+                 Width="379" />
+        <Button Content="添加"
+                Height="23"
+                HorizontalAlignment="Left"
+                Margin="201,409,0,0"
+                Name="bAdd"
+                VerticalAlignment="Top"
+                Width="75" />
+        <Button Content="取消"
+                Height="23"
+                HorizontalAlignment="Left"
+                Margin="292,409,0,0"
+                Name="bCancle"
+                VerticalAlignment="Top"
+                Width="75" />
+    </Grid>
+</Window>
