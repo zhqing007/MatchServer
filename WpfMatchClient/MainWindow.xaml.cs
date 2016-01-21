@@ -20,5 +20,10 @@ namespace WpfMatchClient {
         public MainWindow() {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e) {
+            NewMatch a = new NewMatch();
+            a.Show();
+        }
     }
 }

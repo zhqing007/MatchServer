@@ -35,13 +35,15 @@
                 Margin="60,136,0,0"
                 Name="bOK"
                 VerticalAlignment="Top"
-                Width="75" />
+                Width="75"
+                Click="bOK_Click" />
         <Button Content="取消"
                 Height="23"
                 HorizontalAlignment="Left"
                 Margin="192,136,0,0"
                 Name="bCancle"
                 VerticalAlignment="Top"
-                Width="75" />
+                Width="75"
+                Click="bCancle_Click" />
     </Grid>
 </Window>

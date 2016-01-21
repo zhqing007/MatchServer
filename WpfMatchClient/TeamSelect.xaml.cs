@@ -10,14 +10,33 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfMatchClient.MatchService;
 
 namespace WpfMatchClient {
     /// <summary>
-    /// Window1.xaml 的交互逻辑
+    /// TeamSelect.xaml 的交互逻辑
     /// </summary>
-    public partial class Window1 : Window {
-        public Window1() {
+    public partial class TeamSelect : Window {
+        public TeamSelect() {
             InitializeComponent();
+            teaminfodb[] teamsdb = StaticClass.serviceClient.GetTeams();
+            foreach (teaminfodb teamdb in teamsdb) {
+                this.teamlistBox.Items.Add(new teaminfo(teamdb));
+            }
+            this.DialogResult = false;
+        }
+
+        private void bAdd_Click(object sender, RoutedEventArgs e) {
+            if (teamlistBox.SelectedItems.Count == 0) {
+                MessageBox.Show("请选择要添加的队！");
+                return;
+            }
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void bCancle_Click(object sender, RoutedEventArgs e) {
+            Close();
         }
     }
 }

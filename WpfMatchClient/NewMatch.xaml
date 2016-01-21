@@ -51,27 +51,31 @@
                 Margin="12,395,0,0"
                 Name="bAdd"
                 VerticalAlignment="Top"
-                Width="75" />
+                Width="75"
+                Click="bAdd_Click" />
         <Button Content="确定"
                 Height="23"
                 HorizontalAlignment="Left"
                 Margin="289,395,0,0"
                 Name="bOK"
                 VerticalAlignment="Top"
-                Width="75" />
+                Width="75"
+                Click="bOK_Click" />
         <Button Content="取消"
                 Height="23"
                 HorizontalAlignment="Left"
                 Margin="370,395,0,0"
                 Name="bCancle"
                 VerticalAlignment="Top"
-                Width="75" />
+                Width="75"
+                Click="bCancle_Click" />
         <Button Content="移除"
                 Height="23"
                 HorizontalAlignment="Left"
                 Margin="93,395,0,0"
                 Name="bRemove"
                 VerticalAlignment="Top"
-                Width="75" />
+                Width="75"
+                Click="bRemove_Click" />
     </Grid>
 </Window>
