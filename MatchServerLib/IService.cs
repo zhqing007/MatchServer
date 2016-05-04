@@ -10,7 +10,13 @@ namespace MatchServerLib {
     [ServiceContract]
     public interface IService {
         [OperationContract]
-        string GetData(int value);
+        void InitDic(Dictionary<string, int> dic);
+
+        [OperationContract]
+        void SetDrawResult(string drawnum, int res);
+
+        [OperationContract]
+        Dictionary<string, int> GetDrawResult();
 
         [OperationContract]
         teaminfodb[] GetTeams();

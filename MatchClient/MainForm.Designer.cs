@@ -56,7 +56,7 @@
             this.optionButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1023, 57);
+            this.toolStrip1.Size = new System.Drawing.Size(1002, 57);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -95,7 +95,7 @@
             this.worktabControl.Location = new System.Drawing.Point(0, 57);
             this.worktabControl.Name = "worktabControl";
             this.worktabControl.SelectedIndex = 0;
-            this.worktabControl.Size = new System.Drawing.Size(1023, 653);
+            this.worktabControl.Size = new System.Drawing.Size(1002, 546);
             this.worktabControl.TabIndex = 2;
             // 
             // teamPage
@@ -104,7 +104,7 @@
             this.teamPage.Location = new System.Drawing.Point(4, 25);
             this.teamPage.Name = "teamPage";
             this.teamPage.Padding = new System.Windows.Forms.Padding(3);
-            this.teamPage.Size = new System.Drawing.Size(1015, 624);
+            this.teamPage.Size = new System.Drawing.Size(994, 517);
             this.teamPage.TabIndex = 0;
             this.teamPage.Text = "分组抽签";
             this.teamPage.UseVisualStyleBackColor = true;
@@ -125,14 +125,14 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.selectTeamBox);
             this.splitContainer1.Panel2.Controls.Add(this.cardview);
-            this.splitContainer1.Size = new System.Drawing.Size(1009, 618);
-            this.splitContainer1.SplitterDistance = 268;
+            this.splitContainer1.Size = new System.Drawing.Size(988, 511);
+            this.splitContainer1.SplitterDistance = 259;
             this.splitContainer1.TabIndex = 0;
             // 
             // save
             // 
             this.save.Enabled = false;
-            this.save.Location = new System.Drawing.Point(167, 577);
+            this.save.Location = new System.Drawing.Point(158, 467);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(98, 35);
             this.save.TabIndex = 1;
@@ -149,7 +149,7 @@
             this.TeamListView.FullRowSelect = true;
             this.TeamListView.Location = new System.Drawing.Point(0, 0);
             this.TeamListView.Name = "TeamListView";
-            this.TeamListView.Size = new System.Drawing.Size(268, 572);
+            this.TeamListView.Size = new System.Drawing.Size(259, 461);
             this.TeamListView.TabIndex = 0;
             this.TeamListView.UseCompatibleStateImageBehavior = false;
             this.TeamListView.View = System.Windows.Forms.View.Details;
@@ -171,7 +171,7 @@
             this.selectTeamBox.Location = new System.Drawing.Point(0, 0);
             this.selectTeamBox.Name = "selectTeamBox";
             this.selectTeamBox.ReadOnly = true;
-            this.selectTeamBox.Size = new System.Drawing.Size(737, 42);
+            this.selectTeamBox.Size = new System.Drawing.Size(725, 42);
             this.selectTeamBox.TabIndex = 1;
             // 
             // cardview
@@ -181,7 +181,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.cardview.Location = new System.Drawing.Point(0, 48);
             this.cardview.Name = "cardview";
-            this.cardview.Size = new System.Drawing.Size(737, 570);
+            this.cardview.Size = new System.Drawing.Size(725, 463);
             this.cardview.TabIndex = 0;
             this.cardview.UseCompatibleStateImageBehavior = false;
             this.cardview.MouseUp += new System.Windows.Forms.MouseEventHandler(this.cardview_MouseUp);
@@ -200,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1023, 710);
+            this.ClientSize = new System.Drawing.Size(1002, 603);
             this.Controls.Add(this.worktabControl);
             this.Controls.Add(this.toolStrip1);
             this.Name = "MainForm";

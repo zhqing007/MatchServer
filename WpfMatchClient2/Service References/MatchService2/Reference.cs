@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfMatchClient.MatchService {
+namespace WpfMatchClient2.MatchService2 {
     using System.Runtime.Serialization;
     using System;
     
@@ -243,7 +243,7 @@ namespace WpfMatchClient.MatchService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MatchService.IService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MatchService2.IService")]
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/InitDic", ReplyAction="http://tempuri.org/IService/InitDicResponse")]
@@ -256,22 +256,22 @@ namespace WpfMatchClient.MatchService {
         System.Collections.Generic.Dictionary<string, int> GetDrawResult();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetTeams", ReplyAction="http://tempuri.org/IService/GetTeamsResponse")]
-        WpfMatchClient.MatchService.teaminfodb[] GetTeams();
+        WpfMatchClient2.MatchService2.teaminfodb[] GetTeams();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMatchTeams", ReplyAction="http://tempuri.org/IService/GetMatchTeamsResponse")]
-        WpfMatchClient.MatchService.teaminfodb[] GetMatchTeams(string matchname);
+        WpfMatchClient2.MatchService2.teaminfodb[] GetMatchTeams(string matchname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SaveMatchTeams", ReplyAction="http://tempuri.org/IService/SaveMatchTeamsResponse")]
-        void SaveMatchTeams(WpfMatchClient.MatchService.teaminfodb[] teamarray);
+        void SaveMatchTeams(WpfMatchClient2.MatchService2.teaminfodb[] teamarray);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMatchs", ReplyAction="http://tempuri.org/IService/GetMatchsResponse")]
-        WpfMatchClient.MatchService.matchinfodb[] GetMatchs();
+        WpfMatchClient2.MatchService2.matchinfodb[] GetMatchs();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddTeam", ReplyAction="http://tempuri.org/IService/AddTeamResponse")]
-        int AddTeam(WpfMatchClient.MatchService.teaminfodb team);
+        int AddTeam(WpfMatchClient2.MatchService2.teaminfodb team);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddMatch", ReplyAction="http://tempuri.org/IService/AddMatchResponse")]
-        int AddMatch(WpfMatchClient.MatchService.matchinfodb match);
+        int AddMatch(WpfMatchClient2.MatchService2.matchinfodb match);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddMatchTeam", ReplyAction="http://tempuri.org/IService/AddMatchTeamResponse")]
         void AddMatchTeam(string matchn, string teamn);
@@ -280,16 +280,16 @@ namespace WpfMatchClient.MatchService {
         void DelTeam(string teamname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService/GetDataUsingDataContractResponse")]
-        WpfMatchClient.MatchService.CompositeType GetDataUsingDataContract(WpfMatchClient.MatchService.CompositeType composite);
+        WpfMatchClient2.MatchService2.CompositeType GetDataUsingDataContract(WpfMatchClient2.MatchService2.CompositeType composite);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceChannel : WpfMatchClient.MatchService.IService, System.ServiceModel.IClientChannel {
+    public interface IServiceChannel : WpfMatchClient2.MatchService2.IService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceClient : System.ServiceModel.ClientBase<WpfMatchClient.MatchService.IService>, WpfMatchClient.MatchService.IService {
+    public partial class ServiceClient : System.ServiceModel.ClientBase<WpfMatchClient2.MatchService2.IService>, WpfMatchClient2.MatchService2.IService {
         
         public ServiceClient() {
         }
@@ -322,27 +322,27 @@ namespace WpfMatchClient.MatchService {
             return base.Channel.GetDrawResult();
         }
         
-        public WpfMatchClient.MatchService.teaminfodb[] GetTeams() {
+        public WpfMatchClient2.MatchService2.teaminfodb[] GetTeams() {
             return base.Channel.GetTeams();
         }
         
-        public WpfMatchClient.MatchService.teaminfodb[] GetMatchTeams(string matchname) {
+        public WpfMatchClient2.MatchService2.teaminfodb[] GetMatchTeams(string matchname) {
             return base.Channel.GetMatchTeams(matchname);
         }
         
-        public void SaveMatchTeams(WpfMatchClient.MatchService.teaminfodb[] teamarray) {
+        public void SaveMatchTeams(WpfMatchClient2.MatchService2.teaminfodb[] teamarray) {
             base.Channel.SaveMatchTeams(teamarray);
         }
         
-        public WpfMatchClient.MatchService.matchinfodb[] GetMatchs() {
+        public WpfMatchClient2.MatchService2.matchinfodb[] GetMatchs() {
             return base.Channel.GetMatchs();
         }
         
-        public int AddTeam(WpfMatchClient.MatchService.teaminfodb team) {
+        public int AddTeam(WpfMatchClient2.MatchService2.teaminfodb team) {
             return base.Channel.AddTeam(team);
         }
         
-        public int AddMatch(WpfMatchClient.MatchService.matchinfodb match) {
+        public int AddMatch(WpfMatchClient2.MatchService2.matchinfodb match) {
             return base.Channel.AddMatch(match);
         }
         
@@ -354,7 +354,7 @@ namespace WpfMatchClient.MatchService {
             base.Channel.DelTeam(teamname);
         }
         
-        public WpfMatchClient.MatchService.CompositeType GetDataUsingDataContract(WpfMatchClient.MatchService.CompositeType composite) {
+        public WpfMatchClient2.MatchService2.CompositeType GetDataUsingDataContract(WpfMatchClient2.MatchService2.CompositeType composite) {
             return base.Channel.GetDataUsingDataContract(composite);
         }
     }

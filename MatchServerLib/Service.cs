@@ -10,8 +10,18 @@ namespace MatchServerLib {
     // 注意: 使用“重构”菜单上的“重命名”命令，可以同时更改代码和配置文件中的类名“Service1”。
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class MatchService : IService {
-        public string GetData(int value) {
-            return string.Format("000.You entered: {0}", value);
+        private static Dictionary<string, int> drawdic = new Dictionary<string, int>();
+
+        public void InitDic(Dictionary<string, int> dic) {
+            drawdic = dic;
+        }
+
+        public void SetDrawResult(string drawnum, int res) {
+            drawdic[drawnum] = res;
+        }
+
+        public Dictionary<string, int> GetDrawResult() {
+            return drawdic;
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite) {
@@ -23,7 +33,6 @@ namespace MatchServerLib {
             }
             return composite;
         }
-
 
         public teaminfodb[] GetTeams() {
             DataTable teamstb = DBhelper.GetTeamsDB();

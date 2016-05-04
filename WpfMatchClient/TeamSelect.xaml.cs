@@ -23,7 +23,6 @@ namespace WpfMatchClient {
             foreach (teaminfodb teamdb in teamsdb) {
                 this.teamlistBox.Items.Add(new teaminfo(teamdb));
             }
-            this.DialogResult = false;
         }
 
         private void bAdd_Click(object sender, RoutedEventArgs e) {

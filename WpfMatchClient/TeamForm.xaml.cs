@@ -21,7 +21,6 @@ namespace WpfMatchClient {
 
         public TeamForm() {
             InitializeComponent();
-            this.DialogResult = false;
         }
 
         private void bOK_Click(object sender, RoutedEventArgs e) {

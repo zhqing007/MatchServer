@@ -49,6 +49,7 @@
     <Compile Include="DBhelper.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerData.cs" />
     <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>

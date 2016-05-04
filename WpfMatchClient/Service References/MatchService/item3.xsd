@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MatchServerLib" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MatchServerLib" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8735/MatchServerLib/MatchService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfteaminfodb">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="teaminfodb" type="tns:teaminfodb" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfteaminfodb" nillable="true" type="tns:ArrayOfteaminfodb" />
+  <xs:complexType name="teaminfodb">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Group" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Order" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="teaminfodb" nillable="true" type="tns:teaminfodb" />
+  <xs:complexType name="ArrayOfmatchinfodb">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="matchinfodb" type="tns:matchinfodb" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfmatchinfodb" nillable="true" type="tns:ArrayOfmatchinfodb" />
+  <xs:complexType name="matchinfodb">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GroupCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="matchinfodb" nillable="true" type="tns:matchinfodb" />
+  <xs:complexType name="CompositeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoolValue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
+</xs:schema>

@@ -1,7 +1,10 @@
 ﻿<Window x:Class="WpfMatchClient.OptionForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="设置" Height="473" Width="327">
+        Title="设置" Height="473" Width="327"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False">
     <Grid>
         <Label Content="队伍列表："
                Height="28"

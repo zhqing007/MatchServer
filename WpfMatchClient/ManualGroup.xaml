@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfMatchClient.ManualGroup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ManualGroup"
+        Height="483"
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Grid Name="grid1"
+          Height="437">
+        <Grid Name="manualgrid"
+              Margin="0,0,0,49">
+            <ListBox Height="356"
+                     HorizontalAlignment="Left"
+                     Margin="0,24,0,0"
+                     Name="teamlistbox"
+                     VerticalAlignment="Top"
+                     Width="188"
+                     PreviewMouseMove="listTeam_PreviewMouseMove">
+                <!--<ListBox.ItemTemplate>-->
+                <!--<DataTemplate>
+                    <TextBlock Text="{Binding Path=Name}"/>
+                </DataTemplate>-->
+                <!--</ListBox.ItemTemplate>-->
+            </ListBox>
+            <Label Content="赛队："
+                   Height="28"
+                   HorizontalAlignment="Left"
+                   Name="label1"
+                   VerticalAlignment="Top" />
+        </Grid>
+        <Button Content="蛇形分配"
+                Height="23"
+                HorizontalAlignment="Right"
+                Margin="0,0,225,12"
+                Name="snake_b"
+                VerticalAlignment="Bottom"
+                Width="91"
+                Click="snake_b_Click" />
+        <Button Content="确定"
+                Height="23"
+                HorizontalAlignment="Right"
+                Margin="0,0,115,12"
+                Name="ok_b"
+                VerticalAlignment="Bottom"
+                Width="75"
+                Click="ok_b_Click" />
+        <Button Content="取消"
+                Height="23"
+                HorizontalAlignment="Right"
+                Margin="0,0,12,12"
+                Name="cancle_b"
+                VerticalAlignment="Bottom"
+                Width="75"
+                Click="cancle_b_Click" />
+    </Grid>
+</Window>

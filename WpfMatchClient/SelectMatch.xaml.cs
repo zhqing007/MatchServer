@@ -20,8 +20,7 @@ namespace WpfMatchClient {
         public matchinfo mif;
 
         public SelectMatch() {
-            InitializeComponent();
-            this.DialogResult = false;
+            InitializeComponent();            
             matchinfodb[] matchs = StaticClass.serviceClient.GetMatchs();
             foreach (matchinfodb mifdb in matchs)
                 matchlistBox.Items.Add(new matchinfo(mifdb));

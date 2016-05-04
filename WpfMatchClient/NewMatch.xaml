@@ -1,7 +1,10 @@
 ﻿<Window x:Class="WpfMatchClient.NewMatch"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="新赛事" Height="477" Width="479">
+        Title="新赛事" Height="477" Width="479"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False">
     <Grid>
         <Label Content="分组数："
                Height="28"
@@ -21,18 +24,26 @@
                  Name="matchname"
                  VerticalAlignment="Top"
                  Width="292" />
-        <Slider Height="23"
+        <Slider Height="37"
                 HorizontalAlignment="Left"
-                Margin="139,44,0,0"
+                Margin="139,41,0,0"
                 Name="countslider"
                 VerticalAlignment="Top"
-                Width="227" />
+                Width="227"
+                Value="2"
+                Minimum="2"
+                LargeChange="2" 
+                SmallChange="1"
+                IsSnapToTickEnabled="True"
+                TickPlacement="Both" />
         <TextBox Height="23"
                  HorizontalAlignment="Left"
                  Margin="74,44,0,0"
                  Name="groupcount"
                  VerticalAlignment="Top"
-                 Width="49" />
+                 Width="49"
+                 Text="{Binding Path=Value,ElementName=countslider}"
+                 IsReadOnly="True" />
         <Label Content="参赛队伍："
                Height="28"
                HorizontalAlignment="Left"

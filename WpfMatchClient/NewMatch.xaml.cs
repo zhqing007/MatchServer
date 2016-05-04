@@ -22,7 +22,6 @@ namespace WpfMatchClient {
 
         public NewMatch() {
             InitializeComponent();
-            this.DialogResult = false;    
         }
 
         private void bAdd_Click(object sender, RoutedEventArgs e) {
@@ -41,10 +40,19 @@ namespace WpfMatchClient {
                     teamlistBox.Items.Add(team);
                 }
             }
-
         }
 
         private void bOK_Click(object sender, RoutedEventArgs e) {
+            if (matchname.Text.Trim().Length == 0) {
+                MessageBox.Show("尚未填写赛事名称！", "错误", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (teamlistBox.Items.Count == 0) {
+                MessageBox.Show("尚未选择比赛队伍！", "错误", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
             if (MessageBox.Show("确认保存赛事基本信息？", "确认", MessageBoxButton.YesNo, MessageBoxImage.Question)
                     == MessageBoxResult.No)
                 return;
@@ -71,15 +79,13 @@ namespace WpfMatchClient {
         }
 
         private void bRemove_Click(object sender, RoutedEventArgs e) {
-            if (teamlistBox.SelectedItems.Count < 0) return;
+            if (teamlistBox.SelectedItems.Count <= 0) return;
 
             if (MessageBox.Show("确认移除所选项？", "确认", MessageBoxButton.YesNo, MessageBoxImage.Question)
                     == MessageBoxResult.No)
                 return;
 
-            foreach (object teamobj in teamlistBox.SelectedItems) {
-                teamlistBox.Items.Remove(teamobj);
-            }
+            teamlistBox.Items.Remove(teamlistBox.SelectedValue);
         }
 
         private void bCancle_Click(object sender, RoutedEventArgs e) {
