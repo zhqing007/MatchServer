@@ -13,6 +13,15 @@ namespace MatchServerLib {
         void InitDic(Dictionary<string, int> dic);
 
         [OperationContract]
+        void DropMatchData();
+
+        [OperationContract]
+        void LoginIn(string teamname);
+
+        [OperationContract]
+        void LoginOut(string teamname);
+
+        [OperationContract]
         void SetDrawResult(string drawnum, int res);
 
         [OperationContract]
