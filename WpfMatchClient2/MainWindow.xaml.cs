@@ -52,20 +52,25 @@ namespace WpfMatchClient2 {
     public class read_thread {        
         public renew listrenew;
         private MainWindow mw;
+
         public read_thread(MainWindow mw_, renew re) {
             listrenew = re;
             mw = mw_;
         }
 
         public void readservice() {
+            bool logflag = false;
             while (!(StaticClass.isclosed)) {
+                if (!logflag)
+                    logflag = StaticClass.serviceClient.LoginIn(StaticClass.teamname);
+
                 Dictionary<string, int> drawDic = StaticClass.serviceClient.GetDrawResult();
                 StaticClass.staticList.Clear();
                 foreach (string key in drawDic.Keys) {
                     StaticClass.staticList.Add(key + "   " + drawDic[key]);
                 }
                 mw.Dispatcher.Invoke(listrenew);
-                Thread.Sleep(3000);
+                Thread.Sleep(2000);
             }
         }
     }

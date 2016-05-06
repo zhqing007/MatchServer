@@ -34,16 +34,18 @@ namespace MatchServerLib {
             matchD.Add(teamname, d);
         }
 
-        public void SetGroNum(string teamname, int num) {
+        public bool SetGroNum(string teamname, int num) {
             if (!matchD.ContainsKey(teamname))
-                return;
+                return false;
             matchD[teamname].gronum = num;
+            return true;
         }
 
-        public void SetLogin(string teamname, bool log) {
+        public bool SetLogin(string teamname, bool log) {
             if (!matchD.ContainsKey(teamname))
-                return;
+                return false;
             matchD[teamname].islogined = log;
+            return true;
         }
 
         public TeamData GetTeam(string teamname) {

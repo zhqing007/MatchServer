@@ -13,8 +13,8 @@ namespace MatchServerLib {
 
         static DBhelper() {
             if (sqlconn != null) return;
-            sqlconn = new SQLiteConnection("Data Source=e:\\MYCPP\\MatchServer\\matchdb.db;Password=zhqing");
-            //sqlconn = new SQLiteConnection("Data Source=matchdb.db;Password=zhqing");
+            //sqlconn = new SQLiteConnection("Data Source=e:\\MYCPP\\MatchServer\\matchdb.db;Password=zhqing");
+            sqlconn = new SQLiteConnection("Data Source=D:\\WorkStation\\MatchServer\\matchdb.db;Password=zhqing");
             sqlconn.Open();
             sqlcmd = sqlconn.CreateCommand();
         }

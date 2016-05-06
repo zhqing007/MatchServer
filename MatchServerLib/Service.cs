@@ -24,16 +24,25 @@ namespace MatchServerLib {
             matchD.renew();
         }
 
-        public void LoginIn(string teamname) {
+        public bool LoginIn(string teamname) {
+            return Login(teamname, true);
+        }
+
+        public bool LoginOut(string teamname) {
+            return Login(teamname, false);
+        }
+
+        private bool Login(string teamname, bool flag) {
+            return matchD.SetLogin(teamname, flag);
+        }
+
+        public string UserLogin(string name, string pw) {
+            DataTable teamNameT = DBhelper.ExecuteDataTable(
+                "select name from teams where loginname='" + name + "' and password='" + pw + "'", null);
+            if (teamNameT.Rows.Count == 0) return null;
+            string teamname = teamNameT.Rows[0][0].ToString();
             Login(teamname, true);
-        }
-
-        public void LoginOut(string teamname) {
-            Login(teamname, false);
-        }
-
-        private void Login(string teamname, bool flag) {
-            matchD.SetLogin(teamname, flag);
+            return teamname;
         }
 
         public void SetDrawResult(string drawnum, int res) {

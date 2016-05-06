@@ -9,5 +9,6 @@ namespace WpfMatchClient2 {
         public static MatchService2.ServiceClient serviceClient = new MatchService2.ServiceClient();
         public static List<string> staticList = new List<string>();
         public static bool isclosed = false;
+        public static string teamname;
     }
 }

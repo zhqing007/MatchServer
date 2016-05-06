@@ -16,10 +16,13 @@ namespace MatchServerLib {
         void DropMatchData();
 
         [OperationContract]
-        void LoginIn(string teamname);
+        bool LoginIn(string teamname);
 
         [OperationContract]
-        void LoginOut(string teamname);
+        bool LoginOut(string teamname);
+
+        [OperationContract]
+        string UserLogin(string name, string pw);
 
         [OperationContract]
         void SetDrawResult(string drawnum, int res);
