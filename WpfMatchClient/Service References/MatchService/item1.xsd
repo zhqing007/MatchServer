@@ -1,41 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8735/MatchServerLib/MatchService/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import schemaLocation="http://localhost:8735/MatchServerLib/MatchService/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MatchServerLib" />
+  <xs:import schemaLocation="http://localhost:8735/MatchServerLib/MatchService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MatchServerLib" />
   <xs:element name="InitDic">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="dic" nillable="true" type="q1:ArrayOfKeyValueOfstringint" />
+        <xs:element minOccurs="0" name="matchname" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InitDicResponse">
     <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetDrawResult">
-    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="drawnum" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="res" type="xs:int" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="InitDicResult" nillable="true" type="q1:ArrayOfTeamStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SetDrawResultResponse">
+  <xs:element name="DropMatchData">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetDrawResult">
+  <xs:element name="DropMatchDataResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetDrawResultResponse">
+  <xs:element name="LoginIn">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetDrawResultResult" nillable="true" type="q2:ArrayOfKeyValueOfstringint" />
+        <xs:element minOccurs="0" name="teamname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginInResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LoginInResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginOut">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="teamname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginOutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LoginOutResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="pw" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserLoginResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDraw">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="teamname" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="drawdata" nillable="true" type="q2:TeamData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDrawResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDraw">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="teamname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDrawResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="GetDrawResult" nillable="true" type="q3:TeamData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -47,7 +103,7 @@
   <xs:element name="GetTeamsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="GetTeamsResult" nillable="true" type="q3:ArrayOfteaminfodb" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="GetTeamsResult" nillable="true" type="q4:ArrayOfteaminfodb" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -61,20 +117,8 @@
   <xs:element name="GetMatchTeamsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="GetMatchTeamsResult" nillable="true" type="q4:ArrayOfteaminfodb" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="GetMatchTeamsResult" nillable="true" type="q5:ArrayOfteaminfodb" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SaveMatchTeams">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="teamarray" nillable="true" type="q5:ArrayOfteaminfodb" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SaveMatchTeamsResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="GetMatchs">
@@ -103,29 +147,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddMatch">
+  <xs:element name="UpDateTeam">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="match" type="q8:matchinfodb" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="team" type="q8:teaminfodb" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddMatchResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AddMatchResult" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddMatchTeam">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="matchn" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="teamn" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddMatchTeamResponse">
+  <xs:element name="UpDateTeamResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -142,18 +171,32 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetDataUsingDataContract">
+  <xs:element name="AddPerson">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="composite" nillable="true" type="q9:CompositeType" />
+        <xs:element minOccurs="0" name="matchname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="teamname" nillable="true" type="xs:string" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="perdata" nillable="true" type="q9:PersonData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetDataUsingDataContractResponse">
+  <xs:element name="AddPersonResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemovePerson">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="GetDataUsingDataContractResult" nillable="true" type="q10:CompositeType" />
+        <xs:element minOccurs="0" name="matchname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="teamname" nillable="true" type="xs:string" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="perdata" nillable="true" type="q10:PersonData" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemovePersonResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

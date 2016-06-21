@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WpfMatchClient.NewMatch"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="新赛事" Height="477" Width="479"
+        Title="新赛事" Height="585" Width="577"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         ShowInTaskbar="False">
@@ -44,30 +44,10 @@
                  Width="49"
                  Text="{Binding Path=Value,ElementName=countslider}"
                  IsReadOnly="True" />
-        <Label Content="参赛队伍："
-               Height="28"
-               HorizontalAlignment="Left"
-               Margin="12,75,0,0"
-               Name="label3"
-               VerticalAlignment="Top" />
-        <ListBox Height="283"
-                 HorizontalAlignment="Left"
-                 Margin="10,99,0,0"
-                 Name="teamlistBox"
-                 VerticalAlignment="Top"
-                 Width="435" />
-        <Button Content="添加"
-                Height="23"
-                HorizontalAlignment="Left"
-                Margin="12,395,0,0"
-                Name="bAdd"
-                VerticalAlignment="Top"
-                Width="75"
-                Click="bAdd_Click" />
         <Button Content="确定"
                 Height="23"
                 HorizontalAlignment="Left"
-                Margin="289,395,0,0"
+                Margin="372,511,0,0"
                 Name="bOK"
                 VerticalAlignment="Top"
                 Width="75"
@@ -75,18 +55,74 @@
         <Button Content="取消"
                 Height="23"
                 HorizontalAlignment="Left"
-                Margin="370,395,0,0"
+                Margin="466,511,0,0"
                 Name="bCancle"
                 VerticalAlignment="Top"
                 Width="75"
                 Click="bCancle_Click" />
-        <Button Content="移除"
-                Height="23"
-                HorizontalAlignment="Left"
-                Margin="93,395,0,0"
-                Name="bRemove"
-                VerticalAlignment="Top"
-                Width="75"
-                Click="bRemove_Click" />
+        <GroupBox Header="参赛队伍"
+                  Height="410"
+                  HorizontalAlignment="Left"
+                  Margin="12,84,0,0"
+                  Name="groupBox1"
+                  VerticalAlignment="Top"
+                  Width="260">
+            <Grid Width="242"
+                  Height="381">
+                <ListBox Height="346"
+                         HorizontalAlignment="Left"
+                         Name="teamlistBox"
+                         VerticalAlignment="Top"
+                         Width="242"
+                         SelectionChanged="teamlistBox_SelectionChanged" />
+                <Button Content="添加"
+                        Height="23"
+                        HorizontalAlignment="Left"
+                        Margin="6,352,0,0"
+                        Name="bAdd"
+                        VerticalAlignment="Top"
+                        Width="75"
+                        Click="bAdd_Click" />
+                <Button Content="移除"
+                        Height="23"
+                        HorizontalAlignment="Left"
+                        Margin="87,352,0,0"
+                        Name="bRemove"
+                        VerticalAlignment="Top"
+                        Width="75"
+                        Click="bRemove_Click" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="参赛人员"
+                  Height="407"
+                  HorizontalAlignment="Left"
+                  Margin="282,87,0,0"
+                  Name="persongroupBox"
+                  VerticalAlignment="Top"
+                  Width="249">
+            <Grid>
+                <ListBox Height="346"
+                         HorizontalAlignment="Left"
+                         Name="personlistBox"
+                         VerticalAlignment="Top"
+                         Width="237" />
+                <Button Content="添加"
+                        Height="23"
+                        HorizontalAlignment="Left"
+                        Margin="6,352,0,0"
+                        Name="addp_b"
+                        VerticalAlignment="Top"
+                        Width="60"
+                        Click="addp_b_Click" />
+                <Button Content="移除"
+                        Height="23"
+                        HorizontalAlignment="Right"
+                        Margin="0,352,96,0"
+                        Name="remp_b"
+                        VerticalAlignment="Top"
+                        Width="57"
+                        Click="remp_b_Click" />
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

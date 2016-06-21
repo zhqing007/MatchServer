@@ -19,63 +19,47 @@ namespace WpfMatchClient {
     public partial class NewMatch : Window {
         public matchinfo mif;
         public List<string> teamlist;
+        List<TeamData> tdlist;
 
         public NewMatch() {
             InitializeComponent();
+            tdlist = new List<TeamData>();
         }
 
         private void bAdd_Click(object sender, RoutedEventArgs e) {
+            matchname.Text = matchname.Text.Trim();
+            if (matchname.Text.Length == 0) {
+                MessageBox.Show("赛事名未填写！", "错误", MessageBoxButton.OK, MessageBoxImage.Stop);
+                return;
+            }
+            matchname.IsReadOnly = true;
+
             TeamSelect ts = new TeamSelect();
             ts.ShowDialog();
-            if (ts.DialogResult == true) {
-                foreach (object team in ts.teamlistBox.SelectedItems) {
-                    bool inlist = false;
-                    foreach (object teamobj in teamlistBox.Items) {
-                        if (team.ToString().Equals(teamobj.ToString())) {
-                            inlist = true;
-                            break;
-                        }
+            if (ts.DialogResult != true) return;
+
+            foreach (object team in ts.teamlistBox.SelectedItems) {
+                bool inlist = false;
+                foreach (object teamobj in teamlistBox.Items) {
+                    if (team.ToString().Equals(teamobj.ToString())) {
+                        inlist = true;
+                        break;
                     }
-                    if (inlist) continue;
-                    teamlistBox.Items.Add(team);
                 }
+                if (inlist) continue;
+                teamlistBox.Items.Add(team);
+                TeamData td = new TeamData();
+                td.TeamName = team.ToString();
+                tdlist.Add(td);
             }
         }
 
         private void bOK_Click(object sender, RoutedEventArgs e) {
-            if (matchname.Text.Trim().Length == 0) {
-                MessageBox.Show("尚未填写赛事名称！", "错误", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
 
-            if (teamlistBox.Items.Count == 0) {
-                MessageBox.Show("尚未选择比赛队伍！", "错误", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
+        }
 
-            if (MessageBox.Show("确认保存赛事基本信息？", "确认", MessageBoxButton.YesNo, MessageBoxImage.Question)
-                    == MessageBoxResult.No)
-                return;
-
-            matchinfodb mifdb = new matchinfodb();
-            mifdb.Name = matchname.Text.Trim();
-            mifdb.GroupCount = (int)(this.countslider.Value);
-
-            int saveinfo = StaticClass.serviceClient.AddMatch(mifdb);
-            if (saveinfo == 2)
-                MessageBox.Show("赛事名已存在，请修改！", "错误", MessageBoxButton.OK, MessageBoxImage.Stop);
-            else {
-                mif = new matchinfo(mifdb);
-                teamlist = new List<string>();
-
-                foreach (object teamobj in teamlistBox.Items) {
-                    teamlist.Add(teamobj.ToString());
-                    StaticClass.serviceClient.AddMatchTeam(mif.Name, teamobj.ToString());
-                }
-                MessageBox.Show("添加成功！", "成功", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.DialogResult = true;
-                this.Close();
-            }
+        private void bCancle_Click(object sender, RoutedEventArgs e) {
+            this.Close();
         }
 
         private void bRemove_Click(object sender, RoutedEventArgs e) {
@@ -85,11 +69,47 @@ namespace WpfMatchClient {
                     == MessageBoxResult.No)
                 return;
 
+            StaticClass.serviceClient.RemovePerson(matchname.Text, teamlistBox.SelectedItem.ToString(), null);
             teamlistBox.Items.Remove(teamlistBox.SelectedValue);
+            personlistBox.Items.Clear();
+        }        
+
+        private void teamlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (teamlistBox.SelectedItem == null) {
+                persongroupBox.Visibility = System.Windows.Visibility.Hidden;
+                return;
+            }
+            persongroupBox.Visibility = System.Windows.Visibility.Visible;
+            personlistBox.Items.Clear();
+            Dictionary<string, PersonData> perd = tdlist[teamlistBox.SelectedIndex].DrawInfo;
+            foreach (string pernum in perd.Keys)
+                personlistBox.Items.Add(perd[pernum].Name);
         }
 
-        private void bCancle_Click(object sender, RoutedEventArgs e) {
-            this.Close();
+        private void addp_b_Click(object sender, RoutedEventArgs e) {
+            NewPerson npdia = new NewPerson();
+            npdia.ShowDialog();
+            if (npdia.DialogResult != true) return;
+
+            PersonData pd = npdia.GetPerson();
+            StaticClass.serviceClient.AddPerson(matchname.Text, teamlistBox.SelectedItem.ToString(), pd);
+            ListBoxItem item = new ListBoxItem();
+            item.Content = pd.Name;
+            item.Tag = pd;
+            personlistBox.Items.Add(item);
+            tdlist[teamlistBox.SelectedIndex].DrawInfo.Add(pd.Num, pd);
+        }
+
+        private void remp_b_Click(object sender, RoutedEventArgs e) {
+            if (personlistBox.SelectedItems.Count <= 0) return;
+
+            if (MessageBox.Show("确认移除所选项？", "确认", MessageBoxButton.YesNo, MessageBoxImage.Question)
+                    == MessageBoxResult.No)
+                return;
+
+            StaticClass.serviceClient.RemovePerson(matchname.Text, teamlistBox.SelectedItem.ToString(),
+                (PersonData)((personlistBox.SelectedItem as ListBoxItem).Tag));
+            personlistBox.Items.Remove(personlistBox.SelectedValue);
         }
     }
 }

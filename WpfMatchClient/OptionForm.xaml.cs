@@ -20,17 +20,15 @@ namespace WpfMatchClient {
         public OptionForm() {
             InitializeComponent();
             teaminfodb[] teamsdb = StaticClass.serviceClient.GetTeams();
-            foreach (teaminfodb teamdb in teamsdb) {
+            foreach (teaminfodb teamdb in teamsdb)
                 this.teamlistBox.Items.Add(new teaminfo(teamdb));
-            }
         }
 
         private void bAdd_Click(object sender, RoutedEventArgs e) {
-            TeamForm tf = new TeamForm();
+            PersonForm tf = new PersonForm();
             tf.ShowDialog();
-            if (tf.DialogResult == true) {
-                this.teamlistBox.Items.Add(new teaminfo(tf.tif));
-            }
+            if (tf.DialogResult == true)
+                this.teamlistBox.Items.Add(tf.tif);
         }
 
         private void bDelete_Click(object sender, RoutedEventArgs e) {
@@ -46,6 +44,17 @@ namespace WpfMatchClient {
 
         private void bClose_Click(object sender, RoutedEventArgs e) {
             Close();
+        }
+
+        private void bEdit_Click(object sender, RoutedEventArgs e) {
+            if (teamlistBox.SelectedIndex < 0) return;
+
+            PersonForm tf = new PersonForm();
+            tf.Title = "修改队伍";
+            tf.tif = (teaminfo)(teamlistBox.SelectedItem);
+            tf.ShowDialog();
+            if (tf.DialogResult == true)
+                this.teamlistBox.Items[teamlistBox.SelectedIndex] = tf.tif;
         }
     }
 }

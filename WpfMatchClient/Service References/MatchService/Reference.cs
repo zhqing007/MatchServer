@@ -15,6 +15,252 @@ namespace WpfMatchClient.MatchService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TeamStatus", Namespace="http://schemas.datacontract.org/2004/07/MatchServerLib")]
+    [System.SerializableAttribute()]
+    public partial struct TeamStatus : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsloginedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TeamNameField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Islogined {
+            get {
+                return this.IsloginedField;
+            }
+            set {
+                if ((this.IsloginedField.Equals(value) != true)) {
+                    this.IsloginedField = value;
+                    this.RaisePropertyChanged("Islogined");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TeamName {
+            get {
+                return this.TeamNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TeamNameField, value) != true)) {
+                    this.TeamNameField = value;
+                    this.RaisePropertyChanged("TeamName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TeamData", Namespace="http://schemas.datacontract.org/2004/07/MatchServerLib")]
+    [System.SerializableAttribute()]
+    public partial class TeamData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] CardDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CardInfoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<string, WpfMatchClient.MatchService.PersonData> DrawInfoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TeamNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] CardD {
+            get {
+                return this.CardDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CardDField, value) != true)) {
+                    this.CardDField = value;
+                    this.RaisePropertyChanged("CardD");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CardInfo {
+            get {
+                return this.CardInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CardInfoField, value) != true)) {
+                    this.CardInfoField = value;
+                    this.RaisePropertyChanged("CardInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<string, WpfMatchClient.MatchService.PersonData> DrawInfo {
+            get {
+                return this.DrawInfoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DrawInfoField, value) != true)) {
+                    this.DrawInfoField = value;
+                    this.RaisePropertyChanged("DrawInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TeamName {
+            get {
+                return this.TeamNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TeamNameField, value) != true)) {
+                    this.TeamNameField = value;
+                    this.RaisePropertyChanged("TeamName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PersonData", Namespace="http://schemas.datacontract.org/2004/07/MatchServerLib")]
+    [System.SerializableAttribute()]
+    public partial class PersonData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DrawResultField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NumField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SexField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DrawResult {
+            get {
+                return this.DrawResultField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DrawResultField, value) != true)) {
+                    this.DrawResultField = value;
+                    this.RaisePropertyChanged("DrawResult");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Num {
+            get {
+                return this.NumField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumField, value) != true)) {
+                    this.NumField = value;
+                    this.RaisePropertyChanged("Num");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Sex {
+            get {
+                return this.SexField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SexField, value) != true)) {
+                    this.SexField = value;
+                    this.RaisePropertyChanged("Sex");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="teaminfodb", Namespace="http://schemas.datacontract.org/2004/07/MatchServerLib")]
     [System.SerializableAttribute()]
     public partial struct teaminfodb : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -26,7 +272,7 @@ namespace WpfMatchClient.MatchService {
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int GroupField;
+        private string LoginnameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MatchNameField;
@@ -35,7 +281,7 @@ namespace WpfMatchClient.MatchService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int OrderField;
+        private string PasswordField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -60,14 +306,14 @@ namespace WpfMatchClient.MatchService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Group {
+        public string Loginname {
             get {
-                return this.GroupField;
+                return this.LoginnameField;
             }
             set {
-                if ((this.GroupField.Equals(value) != true)) {
-                    this.GroupField = value;
-                    this.RaisePropertyChanged("Group");
+                if ((object.ReferenceEquals(this.LoginnameField, value) != true)) {
+                    this.LoginnameField = value;
+                    this.RaisePropertyChanged("Loginname");
                 }
             }
         }
@@ -99,14 +345,14 @@ namespace WpfMatchClient.MatchService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Order {
+        public string Password {
             get {
-                return this.OrderField;
+                return this.PasswordField;
             }
             set {
-                if ((this.OrderField.Equals(value) != true)) {
-                    this.OrderField = value;
-                    this.RaisePropertyChanged("Order");
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -181,79 +427,30 @@ namespace WpfMatchClient.MatchService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/MatchServerLib")]
-    [System.SerializableAttribute()]
-    public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool BoolValueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StringValueField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue {
-            get {
-                return this.BoolValueField;
-            }
-            set {
-                if ((this.BoolValueField.Equals(value) != true)) {
-                    this.BoolValueField = value;
-                    this.RaisePropertyChanged("BoolValue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue {
-            get {
-                return this.StringValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StringValueField, value) != true)) {
-                    this.StringValueField = value;
-                    this.RaisePropertyChanged("StringValue");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MatchService.IService")]
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/InitDic", ReplyAction="http://tempuri.org/IService/InitDicResponse")]
-        void InitDic(System.Collections.Generic.Dictionary<string, int> dic);
+        WpfMatchClient.MatchService.TeamStatus[] InitDic(string matchname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SetDrawResult", ReplyAction="http://tempuri.org/IService/SetDrawResultResponse")]
-        void SetDrawResult(string drawnum, int res);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DropMatchData", ReplyAction="http://tempuri.org/IService/DropMatchDataResponse")]
+        void DropMatchData();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetDrawResult", ReplyAction="http://tempuri.org/IService/GetDrawResultResponse")]
-        System.Collections.Generic.Dictionary<string, int> GetDrawResult();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoginIn", ReplyAction="http://tempuri.org/IService/LoginInResponse")]
+        bool LoginIn(string teamname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoginOut", ReplyAction="http://tempuri.org/IService/LoginOutResponse")]
+        bool LoginOut(string teamname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UserLogin", ReplyAction="http://tempuri.org/IService/UserLoginResponse")]
+        string UserLogin(string name, string pw);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SetDraw", ReplyAction="http://tempuri.org/IService/SetDrawResponse")]
+        void SetDraw(string teamname, WpfMatchClient.MatchService.TeamData drawdata);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetDraw", ReplyAction="http://tempuri.org/IService/GetDrawResponse")]
+        WpfMatchClient.MatchService.TeamData GetDraw(string teamname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetTeams", ReplyAction="http://tempuri.org/IService/GetTeamsResponse")]
         WpfMatchClient.MatchService.teaminfodb[] GetTeams();
@@ -261,26 +458,23 @@ namespace WpfMatchClient.MatchService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMatchTeams", ReplyAction="http://tempuri.org/IService/GetMatchTeamsResponse")]
         WpfMatchClient.MatchService.teaminfodb[] GetMatchTeams(string matchname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SaveMatchTeams", ReplyAction="http://tempuri.org/IService/SaveMatchTeamsResponse")]
-        void SaveMatchTeams(WpfMatchClient.MatchService.teaminfodb[] teamarray);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetMatchs", ReplyAction="http://tempuri.org/IService/GetMatchsResponse")]
         WpfMatchClient.MatchService.matchinfodb[] GetMatchs();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddTeam", ReplyAction="http://tempuri.org/IService/AddTeamResponse")]
         int AddTeam(WpfMatchClient.MatchService.teaminfodb team);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddMatch", ReplyAction="http://tempuri.org/IService/AddMatchResponse")]
-        int AddMatch(WpfMatchClient.MatchService.matchinfodb match);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddMatchTeam", ReplyAction="http://tempuri.org/IService/AddMatchTeamResponse")]
-        void AddMatchTeam(string matchn, string teamn);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/UpDateTeam", ReplyAction="http://tempuri.org/IService/UpDateTeamResponse")]
+        void UpDateTeam(WpfMatchClient.MatchService.teaminfodb team);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DelTeam", ReplyAction="http://tempuri.org/IService/DelTeamResponse")]
         void DelTeam(string teamname);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService/GetDataUsingDataContractResponse")]
-        WpfMatchClient.MatchService.CompositeType GetDataUsingDataContract(WpfMatchClient.MatchService.CompositeType composite);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/AddPerson", ReplyAction="http://tempuri.org/IService/AddPersonResponse")]
+        void AddPerson(string matchname, string teamname, WpfMatchClient.MatchService.PersonData perdata);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemovePerson", ReplyAction="http://tempuri.org/IService/RemovePersonResponse")]
+        void RemovePerson(string matchname, string teamname, WpfMatchClient.MatchService.PersonData perdata);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -310,16 +504,32 @@ namespace WpfMatchClient.MatchService {
                 base(binding, remoteAddress) {
         }
         
-        public void InitDic(System.Collections.Generic.Dictionary<string, int> dic) {
-            base.Channel.InitDic(dic);
+        public WpfMatchClient.MatchService.TeamStatus[] InitDic(string matchname) {
+            return base.Channel.InitDic(matchname);
         }
         
-        public void SetDrawResult(string drawnum, int res) {
-            base.Channel.SetDrawResult(drawnum, res);
+        public void DropMatchData() {
+            base.Channel.DropMatchData();
         }
         
-        public System.Collections.Generic.Dictionary<string, int> GetDrawResult() {
-            return base.Channel.GetDrawResult();
+        public bool LoginIn(string teamname) {
+            return base.Channel.LoginIn(teamname);
+        }
+        
+        public bool LoginOut(string teamname) {
+            return base.Channel.LoginOut(teamname);
+        }
+        
+        public string UserLogin(string name, string pw) {
+            return base.Channel.UserLogin(name, pw);
+        }
+        
+        public void SetDraw(string teamname, WpfMatchClient.MatchService.TeamData drawdata) {
+            base.Channel.SetDraw(teamname, drawdata);
+        }
+        
+        public WpfMatchClient.MatchService.TeamData GetDraw(string teamname) {
+            return base.Channel.GetDraw(teamname);
         }
         
         public WpfMatchClient.MatchService.teaminfodb[] GetTeams() {
@@ -330,10 +540,6 @@ namespace WpfMatchClient.MatchService {
             return base.Channel.GetMatchTeams(matchname);
         }
         
-        public void SaveMatchTeams(WpfMatchClient.MatchService.teaminfodb[] teamarray) {
-            base.Channel.SaveMatchTeams(teamarray);
-        }
-        
         public WpfMatchClient.MatchService.matchinfodb[] GetMatchs() {
             return base.Channel.GetMatchs();
         }
@@ -342,20 +548,20 @@ namespace WpfMatchClient.MatchService {
             return base.Channel.AddTeam(team);
         }
         
-        public int AddMatch(WpfMatchClient.MatchService.matchinfodb match) {
-            return base.Channel.AddMatch(match);
-        }
-        
-        public void AddMatchTeam(string matchn, string teamn) {
-            base.Channel.AddMatchTeam(matchn, teamn);
+        public void UpDateTeam(WpfMatchClient.MatchService.teaminfodb team) {
+            base.Channel.UpDateTeam(team);
         }
         
         public void DelTeam(string teamname) {
             base.Channel.DelTeam(teamname);
         }
         
-        public WpfMatchClient.MatchService.CompositeType GetDataUsingDataContract(WpfMatchClient.MatchService.CompositeType composite) {
-            return base.Channel.GetDataUsingDataContract(composite);
+        public void AddPerson(string matchname, string teamname, WpfMatchClient.MatchService.PersonData perdata) {
+            base.Channel.AddPerson(matchname, teamname, perdata);
+        }
+        
+        public void RemovePerson(string matchname, string teamname, WpfMatchClient.MatchService.PersonData perdata) {
+            base.Channel.RemovePerson(matchname, teamname, perdata);
         }
     }
 }

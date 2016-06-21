@@ -13,8 +13,8 @@ namespace MatchServerLib {
 
         static DBhelper() {
             if (sqlconn != null) return;
-            //sqlconn = new SQLiteConnection("Data Source=e:\\MYCPP\\MatchServer\\matchdb.db;Password=zhqing");
-            sqlconn = new SQLiteConnection("Data Source=D:\\WorkStation\\MatchServer\\matchdb.db;Password=zhqing");
+            sqlconn = new SQLiteConnection("Data Source=e:\\MYCPP\\MatchServer\\matchdb.db;Password=zhqing");
+            //sqlconn = new SQLiteConnection("Data Source=D:\\WorkStation\\MatchServer\\matchdb.db;Password=zhqing");
             sqlconn.Open();
             sqlcmd = sqlconn.CreateCommand();
         }
@@ -126,45 +126,41 @@ namespace MatchServerLib {
             DBhelper.ExecuteSQL("insert into devconfdate (ipaddress, savedate, checkdate) values (@ip, @st, @ct)", p2);
         }
 
-        public static DataTable GetDeviceConfTime(string ip, DateTime begin, DateTime end) {
-            SQLiteParameter[] p = {new SQLiteParameter("@ip", ip)
-                                      , new SQLiteParameter("@begin", begin.ToString("yyyy-MM-dd HH:mm:ss"))
-                                      , new SQLiteParameter("@end", end.ToString("yyyy-MM-dd HH:mm:ss"))};
-            DataTable deconf = ExecuteDataTable(
-                "select checkdate from devconfdate where ipaddress=@ip and checkdate>=@begin and checkdate<=@end"
-                , p);
-            return deconf;
-        }
-
-        public static string GetDeviceConfiguration(string ip, DateTime check) {
-            SQLiteParameter[] p = {new SQLiteParameter("@ip", ip)
-                                      , new SQLiteParameter("@ct", check.ToString("yyyy-MM-dd HH:mm:ss"))};
-            DataTable deconf = ExecuteDataTable(
-                @"select deviceconfiguration.[configuration] from devconfdate left join deviceconfiguration 
-                  on devconfdate.[ipaddress]=deviceconfiguration.[ipaddress]
-                  and strftime('%s',devconfdate.[savedate])=strftime('%s',deviceconfiguration.[savetime])
-                  where devconfdate.[ipaddress]=@ip and strftime('%s',devconfdate.[checkdate])= strftime('%s',@ct)"
-                , p);
-            if (deconf.Rows.Count <= 0) return null;
-            return deconf.Rows[0][0].ToString();
-        }
-
         public static DataTable GetMatchTeamDB(string matchname) {
             SQLiteParameter[] p = { new SQLiteParameter("@name", matchname) };
-            return ExecuteDataTable("select * from matchteam where matchname = @name", p);
+            return ExecuteDataTable(@"select matchname,teamname from match_team_person 
+                       where matchname = @name group by teamname", p);
         }
 
-        public static void SaveMatchTeamsDB(teaminfodb team) {
-            SQLiteParameter[] p = { new SQLiteParameter("@tn", team.Name),
-                                  new SQLiteParameter("@mn", team.MatchName),
-                                  new SQLiteParameter("@or", team.Order),
-                                  new SQLiteParameter("@gr", team.Group)};
-            ExecuteSQL("update matchteam set ordernum=@or, groupnum=@gr where matchname=@mn and teamname=@tn", p);
+        //public static void SaveMatchTeamsDB(teaminfodb team) {
+        //    SQLiteParameter[] p = { new SQLiteParameter("@tn", team.Name),
+        //                          new SQLiteParameter("@mn", team.MatchName),
+        //                          new SQLiteParameter("@or", team.Order),
+        //                          new SQLiteParameter("@gr", team.Group)};
+        //    ExecuteSQL("update matchteam set ordernum=@or, groupnum=@gr where matchname=@mn and teamname=@tn", p);
+        //}
+
+        public static DataTable GetTeamsDBByMatchName(string mname) {
+            SQLiteParameter[] p = { new SQLiteParameter("@mname", mname) };
+            return ExecuteDataTable("select teamname from match_team_person where matchname = @mname group by teamname", p);
         }
 
-        public static DataTable GetTeamsDB(string name) {
+        public static DataTable GetPersonsDB(string mname, string tname) {
+            SQLiteParameter[] p = { new SQLiteParameter("@mname", mname),
+                                  new SQLiteParameter("@tname", tname)};
+            return ExecuteDataTable(@"select b.num as num,b.name as name,a.drawreslut as drawreslut
+                      from match_team_person a,persons b
+                      where a.pernum=b.num and a.matchname=@mname and a.teamname=@tname", p);
+        }
+
+        public static DataTable GetTeamsDBByName(string name) {
             SQLiteParameter[] p = { new SQLiteParameter("@name", name) };
             return ExecuteDataTable("select * from teams where name = @name", p);
+        }
+
+        public static DataTable GetTeamsDBByLoginName(string loginame) {
+            SQLiteParameter[] p = { new SQLiteParameter("@login", loginame) };
+            return ExecuteDataTable("select * from teams where loginname = @login", p);
         }
 
         public static DataTable GetTeamsDB() {
@@ -177,26 +173,36 @@ namespace MatchServerLib {
         }
 
         public static DataTable GetMatchDB() {
-            return ExecuteDataTable("select * from matchinfo", null);
+            return ExecuteDataTable("select matchname as name from match_team_person group by matchname", null);
         }
 
         public static void AddTeamDB(teaminfodb team) {
             SQLiteParameter[] p = { new SQLiteParameter("@name", team.Name),
-                                      new SQLiteParameter("@desc", team.Description)};
-            ExecuteSQL("insert into teams (name, description) values (@name, @desc)", p);
+                                      new SQLiteParameter("@desc", team.Description),
+                                      new SQLiteParameter("@login", team.Loginname),
+                                      new SQLiteParameter("@pw", team.Password)};
+            ExecuteSQL("insert into teams (name,description,loginname,password) values (@name,@desc,@login,@pw)", p);
         }
 
-        public static void AddMatchDB(matchinfodb match) {
-            SQLiteParameter[] p = { new SQLiteParameter("@name", match.Name),
-                                      new SQLiteParameter("@gc", match.GroupCount)};
-            ExecuteSQL("insert into matchinfo (name, groupcount) values (@name, @gc)", p);
+        public static void UpDateTeamDB(teaminfodb team) {
+            SQLiteParameter[] p = { new SQLiteParameter("@name", team.Name),
+                                      new SQLiteParameter("@desc", team.Description),
+                                      new SQLiteParameter("@login", team.Loginname),
+                                      new SQLiteParameter("@pw", team.Password)};
+            ExecuteSQL("update teams set description=@desc,loginname=@login,password=@pw where name=@name", p);
         }
 
-        public static void AddMatchTeam(string matchname, string teamname) {
-            SQLiteParameter[] p = { new SQLiteParameter("@mn", matchname),
-                                      new SQLiteParameter("@tn", teamname)};
-            ExecuteSQL("insert into matchteam (matchname, teamname) values (@mn, @tn)", p);
-        }
+        //public static void AddMatchDB(matchinfodb match) {
+        //    SQLiteParameter[] p = { new SQLiteParameter("@name", match.Name),
+        //                              new SQLiteParameter("@gc", match.GroupCount)};
+        //    ExecuteSQL("insert into matchinfo (name, groupcount) values (@name, @gc)", p);
+        //}
+
+        //public static void AddMatchTeam(string matchname, string teamname) {
+        //    SQLiteParameter[] p = { new SQLiteParameter("@mn", matchname),
+        //                              new SQLiteParameter("@tn", teamname)};
+        //    ExecuteSQL("insert into matchteam (matchname, teamname) values (@mn, @tn)", p);
+        //}
 
         public static void DelTeamDB(string teamname) {
             SQLiteParameter[] p = { new SQLiteParameter("@name", teamname)};
@@ -242,6 +248,18 @@ namespace MatchServerLib {
                 adapter.Fill(data);
                 return data;
             }
+        }
+
+        //internal static DataTable GetPersonByNum(string pernum) {
+        //    SQLiteParameter[] p = { new SQLiteParameter("@num", pernum) };
+        //    return ExecuteDataTable("select * from persons where num = @num", p);
+        //}
+
+        internal static void AddPerson(PersonData perdata) {
+            SQLiteParameter[] p = { new SQLiteParameter("@num", perdata.Num),
+                                      new SQLiteParameter("@name", perdata.Name),
+                                      new SQLiteParameter("@sex", perdata.Sex)};
+            ExecuteSQL("insert into persons (num,name,sex) values (@num,@name,@sex)", p);
         }
     }
 }

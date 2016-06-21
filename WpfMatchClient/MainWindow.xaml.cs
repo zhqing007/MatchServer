@@ -13,13 +13,19 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using WpfMatchClient.MatchService;
+using System.Threading;
 
 namespace WpfMatchClient {
+    public delegate void renew(TeamStatus sersta); 
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
     public partial class MainWindow : Window {
+        public uint ver;
+        public string matchname;
         matchinfo _matchinfo;
+        Thread tbthread;
+
         ObservableCollection<TeamItem> teamitemList = new ObservableCollection<TeamItem>();
         internal ObservableCollection<TeamItem> TeamItemList {
             get { return teamitemList; }
@@ -28,6 +34,21 @@ namespace WpfMatchClient {
 
         public MainWindow() {
             InitializeComponent();
+            tbthread = null;
+        }
+
+        private void SetThread() {
+            if (tbthread != null) {
+                StaticClass.isclosed = true;
+                while (!tbthread.ThreadState.Equals(ThreadState.Stopped))
+                    Thread.Sleep(1000);
+            }
+            read_thread readth = new read_thread(this, new renew(this.RenewTeamlist));
+            tbthread = new Thread(new ThreadStart(readth.readservice));
+            tbthread.Start();
+        }
+
+        public void RenewTeamlist(TeamStatus sersta) {
         }
 
         private void addCard() {
@@ -82,6 +103,7 @@ namespace WpfMatchClient {
                 teamitemList.Add(new TeamItem(teamobj, "未分组"));
             }
             StaticClass.serviceClient.InitDic(drawdic);
+            ver = 0;
             //ListViewItem teamitem = new ListViewItem();
             //teamitem.Content = teamobj;
             //teamitem.
@@ -109,6 +131,7 @@ namespace WpfMatchClient {
                     tinfo.Group == 0 ? "未分组" : tinfo.Group.ToString(), tinfo));
             }
             StaticClass.serviceClient.InitDic(drawdic);
+            ver = 0;
             //if (teamdbs[0].Group != 0) {
             //    this.orderpage.Parent = this.worktabControl;
             //    return;
@@ -185,6 +208,25 @@ namespace WpfMatchClient {
             _name = name;
             _status = status;
             _tag = tag;
+        }
+    }
+
+    public class read_thread {
+        public renew listrenew;
+        private MainWindow mw;
+
+        public read_thread(MainWindow mw_, renew re) {
+            listrenew = re;
+            mw = mw_;
+        }
+
+        public void readservice() {
+            while (!(StaticClass.isclosed)) {
+                Thread.Sleep(2000);
+                TeamStatus serSta = StaticClass.serviceClient.GetServerStatus();
+                if (serSta.Ver == mw.ver) continue;
+                mw.Dispatcher.Invoke(listrenew);
+            }
         }
     }
 }

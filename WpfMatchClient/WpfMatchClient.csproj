@@ -67,11 +67,17 @@
     <Compile Include="NewMatch.xaml.cs">
       <DependentUpon>NewMatch.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewPerson.xaml.cs">
+      <DependentUpon>NewPerson.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OptionForm.xaml.cs">
       <DependentUpon>OptionForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="SelectMatch.xaml.cs">
       <DependentUpon>SelectMatch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPerson.xaml.cs">
+      <DependentUpon>SelectPerson.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service References\MatchService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -105,11 +111,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NewPerson.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OptionForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SelectMatch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectPerson.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,13 +173,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MatchService\MatchService.wsdl" />
-    <None Include="Service References\MatchService\WpfMatchClient.MatchService.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\MatchService\WpfMatchClient.MatchService.matchinfodb.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\MatchService\WpfMatchClient.MatchService.TeamData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\MatchService\WpfMatchClient.MatchService.teaminfodb.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MatchService\WpfMatchClient.MatchService.TeamStatus.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>

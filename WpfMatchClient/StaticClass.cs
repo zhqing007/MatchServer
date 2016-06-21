@@ -7,59 +7,57 @@ using WpfMatchClient.MatchService;
 namespace WpfMatchClient {
     class StaticClass {
         public static ServiceClient serviceClient = new ServiceClient();
+        public static bool isclosed = false;
     }
 
     public class teaminfo {
-        string name;
-        string matchname;
-        int order;
-        int group;
-        string description;
+        teaminfodb tinfodb;
 
-        public teaminfo(teaminfodb tinfodb) {
-            name = tinfodb.Name;
-            matchname = tinfodb.MatchName;
-            order = tinfodb.Order;
-            group = tinfodb.Group;
-            description = tinfodb.Description;
+        public teaminfo(teaminfodb _tinfodb) {
+            tinfodb = _tinfodb;
         }
 
         public teaminfodb ToDB() {
-            teaminfodb teamdb = new teaminfodb();
-            teamdb.Name = name;
-            teamdb.MatchName = matchname;
-            teamdb.Order = order;
-            teamdb.Group = group;
-            return teamdb;
+            return tinfodb;
         }
 
         public string Name {
-            get { return name; }
-            set { name = value; }
+            get { return tinfodb.Name; }
+            set { tinfodb.Name = value; }
         }
 
         public string MatchName {
-            get { return matchname; }
-            set { matchname = value; }
+            get { return tinfodb.MatchName; }
+            set { tinfodb.MatchName = value; }
         }
 
         public int Order {
-            get { return order; }
-            set { order = value; }
+            get { return tinfodb.Order; }
+            set { tinfodb.Order = value; }
         }
 
         public int Group {
-            get { return group; }
-            set { group = value; }
+            get { return tinfodb.Group; }
+            set { tinfodb.Group = value; }
         }
 
         public string Description {
-            get { return description; }
-            set { description = value; }
+            get { return tinfodb.Description; }
+            set { tinfodb.Description = value; }
+        }
+
+        public string Loginname {
+            get { return tinfodb.Loginname; }
+            set { tinfodb.Loginname = value; }
+        }
+
+        public string Password {
+            get { return tinfodb.Password; }
+            set { tinfodb.Password = value; }
         }
 
         public override string ToString() {
-            return name;
+            return tinfodb.Name;
         }
     }
 
