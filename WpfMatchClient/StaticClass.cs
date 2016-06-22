@@ -31,16 +31,6 @@ namespace WpfMatchClient {
             set { tinfodb.MatchName = value; }
         }
 
-        public int Order {
-            get { return tinfodb.Order; }
-            set { tinfodb.Order = value; }
-        }
-
-        public int Group {
-            get { return tinfodb.Group; }
-            set { tinfodb.Group = value; }
-        }
-
         public string Description {
             get { return tinfodb.Description; }
             set { tinfodb.Description = value; }

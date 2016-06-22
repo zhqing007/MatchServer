@@ -15,66 +15,6 @@ namespace WpfMatchClient.MatchService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TeamStatus", Namespace="http://schemas.datacontract.org/2004/07/MatchServerLib")]
-    [System.SerializableAttribute()]
-    public partial struct TeamStatus : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsloginedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TeamNameField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Islogined {
-            get {
-                return this.IsloginedField;
-            }
-            set {
-                if ((this.IsloginedField.Equals(value) != true)) {
-                    this.IsloginedField = value;
-                    this.RaisePropertyChanged("Islogined");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TeamName {
-            get {
-                return this.TeamNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TeamNameField, value) != true)) {
-                    this.TeamNameField = value;
-                    this.RaisePropertyChanged("TeamName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="TeamData", Namespace="http://schemas.datacontract.org/2004/07/MatchServerLib")]
     [System.SerializableAttribute()]
     public partial class TeamData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -90,6 +30,9 @@ namespace WpfMatchClient.MatchService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.Dictionary<string, WpfMatchClient.MatchService.PersonData> DrawInfoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MatchNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TeamNameField;
@@ -139,6 +82,19 @@ namespace WpfMatchClient.MatchService {
                 if ((object.ReferenceEquals(this.DrawInfoField, value) != true)) {
                     this.DrawInfoField = value;
                     this.RaisePropertyChanged("DrawInfo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MatchName {
+            get {
+                return this.MatchNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MatchNameField, value) != true)) {
+                    this.MatchNameField = value;
+                    this.RaisePropertyChanged("MatchName");
                 }
             }
         }
@@ -432,7 +388,7 @@ namespace WpfMatchClient.MatchService {
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/InitDic", ReplyAction="http://tempuri.org/IService/InitDicResponse")]
-        WpfMatchClient.MatchService.TeamStatus[] InitDic(string matchname);
+        WpfMatchClient.MatchService.TeamData[] InitDic();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DropMatchData", ReplyAction="http://tempuri.org/IService/DropMatchDataResponse")]
         void DropMatchData();
@@ -475,6 +431,9 @@ namespace WpfMatchClient.MatchService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/RemovePerson", ReplyAction="http://tempuri.org/IService/RemovePersonResponse")]
         void RemovePerson(string matchname, string teamname, WpfMatchClient.MatchService.PersonData perdata);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteAllData", ReplyAction="http://tempuri.org/IService/DeleteAllDataResponse")]
+        void DeleteAllData();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -504,8 +463,8 @@ namespace WpfMatchClient.MatchService {
                 base(binding, remoteAddress) {
         }
         
-        public WpfMatchClient.MatchService.TeamStatus[] InitDic(string matchname) {
-            return base.Channel.InitDic(matchname);
+        public WpfMatchClient.MatchService.TeamData[] InitDic() {
+            return base.Channel.InitDic();
         }
         
         public void DropMatchData() {
@@ -562,6 +521,10 @@ namespace WpfMatchClient.MatchService {
         
         public void RemovePerson(string matchname, string teamname, WpfMatchClient.MatchService.PersonData perdata) {
             base.Channel.RemovePerson(matchname, teamname, perdata);
+        }
+        
+        public void DeleteAllData() {
+            base.Channel.DeleteAllData();
         }
     }
 }

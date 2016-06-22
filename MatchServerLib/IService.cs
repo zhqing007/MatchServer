@@ -10,7 +10,7 @@ namespace MatchServerLib {
     [ServiceContract]
     public interface IService {
         [OperationContract]
-        TeamStatus[] InitDic(string matchname);
+        TeamData[] InitDic();
 
         [OperationContract]
         void DropMatchData();
@@ -70,6 +70,9 @@ namespace MatchServerLib {
 
         [OperationContract]
         void RemovePerson(string matchname, string teamname, PersonData perdata);
+
+        [OperationContract]
+        void DeleteAllData();
 
         // TODO: 在此添加您的服务操作
     }

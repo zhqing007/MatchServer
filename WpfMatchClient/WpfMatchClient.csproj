@@ -182,9 +182,6 @@
     <None Include="Service References\MatchService\WpfMatchClient.MatchService.teaminfodb.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MatchService\WpfMatchClient.MatchService.TeamStatus.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

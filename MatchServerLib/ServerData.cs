@@ -38,26 +38,8 @@ namespace MatchServerLib {
     }
 
     [DataContract]
-    public struct TeamStatus {
-        //team登录状态
-        string teamname;
-        bool islogined;
-
-        [DataMember]
-        public string TeamName {
-            get { return teamname; }
-            set { teamname = value; }
-        }
-
-        [DataMember]
-        public bool Islogined {
-            get { return islogined; }
-            set { islogined = value; }
-        }
-    }
-
-    [DataContract]
     public class TeamData {
+        public string matchname;
         public string teamname;
         public int status;  //0：等待；1：主控已发出抽签请求；2：抽签完毕。
         public bool islogined;
@@ -96,6 +78,12 @@ namespace MatchServerLib {
         public string TeamName {
             get { return teamname; }
             set { teamname = value; }
+        }
+
+        [DataMember]
+        public string MatchName {
+            get { return matchname; }
+            set { matchname = value; }
         }
     }
 
@@ -152,13 +140,12 @@ namespace MatchServerLib {
             return teamD[teamname].islogined;
         }
 
-        public TeamStatus[] GetTeamStatus(uint _ver) {
+        public TeamData[] GetTeamData(uint _ver) {
             if (ver == _ver) return null;
-            TeamStatus[] teams = new TeamStatus[teamD.Count];
+            TeamData[] teams = new TeamData[teamD.Count];
             int i = 0;
             foreach (string teamname in teamD.Keys) {
-                teams[i].TeamName = teamname;
-                teams[i].Islogined = teamD[teamname].islogined;
+                teams[i] = teamD[teamname];
                 ++i;
             }
             return teams;

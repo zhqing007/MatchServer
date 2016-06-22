@@ -16,7 +16,7 @@ using WpfMatchClient.MatchService;
 using System.Threading;
 
 namespace WpfMatchClient {
-    public delegate void renew(TeamStatus sersta); 
+    public delegate void renew(TeamData teamd); 
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
@@ -48,7 +48,7 @@ namespace WpfMatchClient {
             tbthread.Start();
         }
 
-        public void RenewTeamlist(TeamStatus sersta) {
+        public void RenewTeamlist(TeamData teamd) {
         }
 
         private void addCard() {
@@ -87,22 +87,24 @@ namespace WpfMatchClient {
         }
 
         private void newButton_Click(object sender, RoutedEventArgs e) {
+            if (MessageBox.Show("新建比赛将清除现有数据，是否确认？", "确认", MessageBoxButton.YesNo, MessageBoxImage.Question)
+                    == MessageBoxResult.No)
+                return;
+            StaticClass.serviceClient.DeleteAllData();
+
             NewMatch newmform = new NewMatch();
             newmform.ShowDialog();
 
-            if (newmform.DialogResult != true)
-                return;
+            TeamData[] teams = StaticClass.serviceClient.InitDic();
 
             //TeamListView.Items.Clear();
             teamitemList.Clear();
             //cardview.Items.Clear();
             _matchinfo = newmform.mif;
-            Dictionary<string, int> drawdic = new Dictionary<string, int>();
-            foreach (string teamobj in newmform.teamlist) {
-                drawdic.Add(teamobj, 0);
-                teamitemList.Add(new TeamItem(teamobj, "未分组"));
-            }
-            StaticClass.serviceClient.InitDic(drawdic);
+
+            foreach (TeamData team in teams)
+                teamitemList.Add(new TeamItem(team.TeamName, "未登录", team));
+
             ver = 0;
             //ListViewItem teamitem = new ListViewItem();
             //teamitem.Content = teamobj;
@@ -126,11 +128,11 @@ namespace WpfMatchClient {
             Dictionary<string, int> drawdic = new Dictionary<string, int>();
             foreach (teaminfodb teamdb in teamdbs) {
                 teaminfo tinfo = new teaminfo(teamdb);
-                drawdic.Add(tinfo.ToString(), tinfo.Group);
-                teamitemList.Add(new TeamItem(tinfo.ToString(),
-                    tinfo.Group == 0 ? "未分组" : tinfo.Group.ToString(), tinfo));
+                //drawdic.Add(tinfo.ToString(), tinfo.Group);
+                //teamitemList.Add(new TeamItem(tinfo.ToString(),
+                //    tinfo.Group == 0 ? "未分组" : tinfo.Group.ToString(), tinfo));
             }
-            StaticClass.serviceClient.InitDic(drawdic);
+            //StaticClass.serviceClient.InitDic(drawdic);
             ver = 0;
             //if (teamdbs[0].Group != 0) {
             //    this.orderpage.Parent = this.worktabControl;
@@ -152,6 +154,16 @@ namespace WpfMatchClient {
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             TeamListView.ItemsSource = teamitemList;
+
+            TeamData[] teams = StaticClass.serviceClient.InitDic();
+            if (teams.Length == 0) return;
+            //TeamListView.Items.Clear();
+            teamitemList.Clear();
+
+            foreach (TeamData team in teams)
+                teamitemList.Add(new TeamItem(team.TeamName, "未登录", team));
+
+            ver = 0;
         }
 
         private void manual_b_Click(object sender, RoutedEventArgs e) {
@@ -223,8 +235,8 @@ namespace WpfMatchClient {
         public void readservice() {
             while (!(StaticClass.isclosed)) {
                 Thread.Sleep(2000);
-                TeamStatus serSta = StaticClass.serviceClient.GetServerStatus();
-                if (serSta.Ver == mw.ver) continue;
+                //TeamData serSta = StaticClass.serviceClient.GetServerStatus();
+                //if (serSta.Ver == mw.ver) continue;
                 mw.Dispatcher.Invoke(listrenew);
             }
         }

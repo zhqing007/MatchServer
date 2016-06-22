@@ -3,15 +3,13 @@
   <xs:import schemaLocation="http://localhost:8735/MatchServerLib/MatchService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MatchServerLib" />
   <xs:element name="InitDic">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="matchname" nillable="true" type="xs:string" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="InitDicResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="InitDicResult" nillable="true" type="q1:ArrayOfTeamStatus" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MatchServerLib" minOccurs="0" name="InitDicResult" nillable="true" type="q1:ArrayOfTeamData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -195,6 +193,16 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="RemovePersonResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAllData">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAllDataResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

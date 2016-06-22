@@ -13,23 +13,25 @@ namespace MatchServerLib {
     public class MatchService : IService {
         private static MatchData matchD = new MatchData();
 
-        public TeamStatus[] InitDic(string matchname) {
+        public TeamData[] InitDic() {
             matchD.renew();
-            DataTable teamnames = DBhelper.GetTeamsDBByMatchName(matchname);
-            foreach (string teamname in teamnames.Rows) {                
-                DataTable persons = DBhelper.GetPersonsDB(matchname, teamname);
+            DataTable teaminfos = DBhelper.GetTeamsDBByMatchName();
+            foreach (DataRow teaminfo in teaminfos.Rows) {
                 TeamData td = new TeamData();
+                td.matchname = teaminfo["matchname"].ToString();
+                td.teamname = teaminfo["teamname"].ToString();
+                DataTable persons = DBhelper.GetPersonsDB(td.teamname);                
                 foreach(DataRow prow in persons.Rows){
                     PersonData pd = new PersonData();
-                    pd.Num = prow["num"].ToString();
-                    pd.Name = prow["name"].ToString();
+                    pd.Num = prow["pernum"].ToString();
+                    pd.Name = prow["pername"].ToString();
                     pd.DrawResult = prow["drawreslut"].ToString();
-                    td.personD.Add(prow["num"].ToString(), pd);
+                    td.personD.Add(prow["pernum"].ToString(), pd);
                 }
-                matchD.AddTeam(teamname, td);
+                matchD.AddTeam(td.teamname, td);
             }
 
-            return matchD.GetTeamStatus(matchD.GetVer());
+            return matchD.GetTeamData(matchD.GetVer());
         }
 
         public void DropMatchData() {
@@ -188,6 +190,12 @@ namespace MatchServerLib {
                                       new SQLiteParameter("@teamname", teamname)};
             DBhelper.ExecuteSQL(@"delete from match_team_person where matchname=@matchname and teamname=@teamname
                              and pernum=@num", p1);
+        }
+
+
+        public void DeleteAllData() {
+            DBhelper.ExecuteSQL(@"delete from match_team_person");
+            DBhelper.ExecuteSQL(@"delete from teams");
         }
     }
 }

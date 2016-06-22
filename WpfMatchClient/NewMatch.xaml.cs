@@ -55,10 +55,6 @@ namespace WpfMatchClient {
         }
 
         private void bOK_Click(object sender, RoutedEventArgs e) {
-
-        }
-
-        private void bCancle_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
 

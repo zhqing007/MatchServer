@@ -140,17 +140,14 @@ namespace MatchServerLib {
         //    ExecuteSQL("update matchteam set ordernum=@or, groupnum=@gr where matchname=@mn and teamname=@tn", p);
         //}
 
-        public static DataTable GetTeamsDBByMatchName(string mname) {
-            SQLiteParameter[] p = { new SQLiteParameter("@mname", mname) };
-            return ExecuteDataTable("select teamname from match_team_person where matchname = @mname group by teamname", p);
+        public static DataTable GetTeamsDBByMatchName() {
+            return ExecuteDataTable("select matchname,teamname from match_team_person group by teamname", null);
         }
 
-        public static DataTable GetPersonsDB(string mname, string tname) {
-            SQLiteParameter[] p = { new SQLiteParameter("@mname", mname),
-                                  new SQLiteParameter("@tname", tname)};
-            return ExecuteDataTable(@"select b.num as num,b.name as name,a.drawreslut as drawreslut
-                      from match_team_person a,persons b
-                      where a.pernum=b.num and a.matchname=@mname and a.teamname=@tname", p);
+        public static DataTable GetPersonsDB(string tname) {
+            SQLiteParameter[] p = { new SQLiteParameter("@tname", tname)};
+            return ExecuteDataTable(@"select pernum,pername,drawreslut
+                      from match_team_person where teamname=@tname", p);
         }
 
         public static DataTable GetTeamsDBByName(string name) {
